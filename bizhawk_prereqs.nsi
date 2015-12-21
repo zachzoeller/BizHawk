@@ -37,16 +37,29 @@ Section "Windows Imaging Component (.net 4.0 prerequisite for older OS)" SEC_WIC
 done:
 SectionEnd
 
-Section "Microsoft Visual C++ 2010 SP1 Redist" SEC_CRT2010_SP1
+Section "Microsoft Visual C++ 2010 SP1 Runtime" SEC_CRT2010_SP1
 
   SetOutPath "$TEMP"
   File "dist\vcredist_2010_sp1_x86.exe"
-  DetailPrint "Running Visual C++ 2010 SP1 Redistributable Setup..."
+  DetailPrint "Running Visual C++ 2010 SP1 Runtime Setup..."
   DetailPrint "(And ordering it to attempt a repair since some user's DLLs are wrecked)"
   ExecWait '"$TEMP\vcredist_2010_sp1_x86.exe" /repair /q /promptrestart'
-  DetailPrint "Finished Visual C++ 2010 SP1 Redistributable Setup"
+  DetailPrint "Finished Visual C++ 2010 SP1 Runtime Setup"
   
   Delete "$TEMP\vcredist_2010_sp1_x86.exe"
+
+done:
+SectionEnd
+
+Section "Microsoft Visual C++ 2015 Runtime" SEC_CRT2015
+
+  SetOutPath "$TEMP"
+  File "dist\vcredist_2015_x86.exe"
+  DetailPrint "Running Visual C++ 2015 Runtime Setup..."
+  ExecWait '"$TEMP\vcredist_2015_x86.exe" /quiet'
+  DetailPrint "Finished Visual C++ 2015 SP1 Runtime Setup"
+  
+  Delete "$TEMP\vc_edist_2015_x86.exe"
 
 done:
 SectionEnd
