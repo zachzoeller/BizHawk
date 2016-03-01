@@ -1,5 +1,3 @@
-!include x64.nsh
-
 ; The name of the installer
 Name "Bizhawk Prerequisites"
 
@@ -12,7 +10,7 @@ InstallDir $DESKTOP\Example1
 ; Request application privileges for Windows Vista+
 RequestExecutionLevel admin 
 
-LicenseText "The following prerequisites will be checked and installed:\n(Don't worry, the x64 installers are benign on 32bit systems)" "OK"
+LicenseText "The following prerequisites will be checked and installed:" "OK"
 LicenseData "dist\info.txt"
 Page license
 Page instfiles
