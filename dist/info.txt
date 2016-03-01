@@ -1,5 +1,9 @@
 Windows Imaging Component (.net 4.0 prerequisite for older OS)
 Visual C++ 2010 SP1 Runtime
+Visual C++ 2010 SP1 Runtime (x64)
 Visual C++ 2015 Runtime
+Visual C++ 2015 Runtime (x64)
 .Net Framework v4.0.30319
 DirectX Web Update
+
+(Don't worry, the x64 installers are benign on 32bit systems.)

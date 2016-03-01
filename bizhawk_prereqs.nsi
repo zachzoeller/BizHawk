@@ -1,11 +1,4 @@
-; example1.nsi
-;
-; This script is perhaps one of the simplest NSIs you can make. All of the
-; optional settings are left to their default settings. The installer simply 
-; prompts the user asking them where to install, and drops a copy of example1.nsi
-; there. 
-
-;--------------------------------
+!include x64.nsh
 
 ; The name of the installer
 Name "Bizhawk Prerequisites"
@@ -19,7 +12,7 @@ InstallDir $DESKTOP\Example1
 ; Request application privileges for Windows Vista+
 RequestExecutionLevel admin 
 
-LicenseText "The following prerequisites will be checked and installed:" "OK"
+LicenseText "The following prerequisites will be checked and installed:\n(Don't worry, the x64 installers are benign on 32bit systems)" "OK"
 LicenseData "dist\info.txt"
 Page license
 Page instfiles
@@ -51,6 +44,19 @@ Section "Microsoft Visual C++ 2010 SP1 Runtime" SEC_CRT2010_SP1
 done:
 SectionEnd
 
+Section "Microsoft Visual C++ 2010 SP1 Runtime (x64)" SEC_CRT2010_SP1_X64
+
+  SetOutPath "$TEMP"
+  File "dist\vcredist_2010_sp1_x64.exe"
+  DetailPrint "Running Visual C++ 2010 SP1 Runtime (x64) Setup..."
+  ExecWait '"$TEMP\vcredist_2010_sp1_x64.exe" /q /promptrestart'
+  DetailPrint "Finished Visual C++ 2010 SP1 (x64) Runtime Setup"
+  
+  Delete "$TEMP\vcredist_2010_sp1_x64.exe"
+
+done:
+SectionEnd
+
 Section "Microsoft Visual C++ 2015 Runtime" SEC_CRT2015
 
   SetOutPath "$TEMP"
@@ -59,7 +65,20 @@ Section "Microsoft Visual C++ 2015 Runtime" SEC_CRT2015
   ExecWait '"$TEMP\vcredist_2015_x86.exe" /quiet'
   DetailPrint "Finished Visual C++ 2015 SP1 Runtime Setup"
   
-  Delete "$TEMP\vc_edist_2015_x86.exe"
+  Delete "$TEMP\vcredist_2015_x86.exe"
+
+done:
+SectionEnd
+
+Section "Microsoft Visual C++ 2015 Runtime (x64)" SEC_CRT2015_X64
+
+  SetOutPath "$TEMP"
+  File "dist\vcredist_2015_x64.exe"
+  DetailPrint "Running Visual C++ 2015 Runtime (x64) Setup..."
+  ExecWait '"$TEMP\vcredist_2015_x64.exe" /quiet'
+  DetailPrint "Finished Visual C++ 2015 SP1 (x64) Runtime Setup"
+  
+  Delete "$TEMP\vcredist_2015_x64.exe"
 
 done:
 SectionEnd
